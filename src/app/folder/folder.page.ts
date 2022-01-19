@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+
+import { FormGroup } from '@angular/forms';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { LoginModel } from '../models/loginComponentModel';
 
 @Component({
   selector: 'app-folder',
@@ -7,12 +10,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./folder.page.scss'],
 })
 export class FolderPage implements OnInit {
-  public folder: string;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  formLogin = new FormGroup({});
+  modelLogin = this.loginModel.model;
+  fieldsLogin: FormlyFieldConfig[] = this.loginModel.form;
+
+  constructor(private loginModel:LoginModel ) { }
 
   ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
+  onSubmit() {
+    console.log(this.modelLogin);
+  }
+
 
 }
